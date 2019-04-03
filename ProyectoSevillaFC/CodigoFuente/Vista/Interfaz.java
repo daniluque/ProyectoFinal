@@ -1,3 +1,4 @@
+package Vista;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -12,7 +13,7 @@ import java.awt.Color;
 import javax.swing.JTextPane;
 import javax.swing.JSpinner;
 import javax.swing.JPasswordField;
-
+import Vista.Inicio;
 public class Interfaz extends JFrame {
 
 	private JPanel contentPane;
@@ -39,7 +40,7 @@ public class Interfaz extends JFrame {
 	 * Create the frame.
 	 */
 	public Interfaz() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(150, 200, 682, 399);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
@@ -52,8 +53,7 @@ public class Interfaz extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				if(passwordField.getText().equals("Hola")&& txtUsuario.getText().equals("1234") ) {
-					System.out.println("Entraste");
-					
+					System.out.println("Entraste");					
 				}
 			}
 
