@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Conexion {
+	
 	static 	String timezone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	static	String dbName = "sevilladb";
 	static	String url = "jdbc:mysql://localhost:3306/"+dbName+timezone;

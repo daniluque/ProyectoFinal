@@ -14,26 +14,8 @@ public class Inicio extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Inicio frame = new Inicio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public Inicio() {
+		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 708, 403);
 		contentPane = new JPanel();
@@ -47,9 +29,23 @@ public class Inicio extends JFrame {
 				VisorJugadores visor = new VisorJugadores();
 				dispose();
 				visor.setVisible(true);
+				
+				
 			}
 		});
-		btnVerJugadoresY.setBounds(47, 56, 173, 34);
+		btnVerJugadoresY.setBounds(99, 56, 199, 88);
 		contentPane.add(btnVerJugadoresY);
+		
+		JButton jornadas = new JButton("Ver jornadas");
+		jornadas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VisorJornadas jornada = new VisorJornadas();
+				dispose();
+				jornada.setVisible(true);
+			}
+		});
+		jornadas.setBounds(363, 56, 199, 88);
+		contentPane.add(jornadas);
+		
 	}
 }

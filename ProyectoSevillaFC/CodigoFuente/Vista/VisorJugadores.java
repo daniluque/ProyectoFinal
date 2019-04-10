@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Controlador.Main;
 import Modelo.Conexion;
 
 import javax.swing.JTabbedPane;
@@ -24,75 +25,59 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 
 public class VisorJugadores extends JFrame {
+	private JTextField name;
+	private JTextField dorsal;
+	//Esta clase abre la ventana de los jugadores con sus botones
 	
+	public VisorJugadores() {
+		JPanel panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JTabbedPane tablaJugadores = new JTabbedPane(JTabbedPane.TOP);
+		tablaJugadores.setBounds(10, 11, 668, 138);
+		panel.add(tablaJugadores);
+		
+		
+		name = new JTextField();
+		name.setBounds(142, 198, 105, 23);
+		panel.add(name);
+		name.setColumns(10);
+		
+		dorsal = new JTextField();
+		dorsal.setBounds(265, 199, 32, 22);
+		panel.add(dorsal);
+		dorsal.setColumns(10);
 	
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VisorJugadores frame = new VisorJugadores();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		JButton insertJugador = new JButton("A\u00F1adir Jugador");
+		insertJugador.setBounds(10, 197, 122, 23);
+		insertJugador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				/*Las comillas simples indica que el campo de la bbd es texto*/
+			Conexion.ejecutarUpdate("Insert into jugadores(nombre,dorsal) "
+					+ "VALUES('"+name.getText()+"',"+dorsal.getText()+")");
+			
 			}
 		});
+		panel.add(insertJugador);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(142, 173, 46, 14);
+		panel.add(lblNombre);
+			
+		JLabel lblDorsal = new JLabel("Dorsal");
+		lblDorsal.setBounds(265, 173, 46, 14);
+		panel.add(lblDorsal);
+		
+		
+		
 	}
-	*/
-	private JPanel contentPane;
-	private static final long serialVersionUID = 4049634590287015989L;
-	/** La tabla */	
-	private JTable tabla;
-	/** La ventana */	
-	private JFrame ventana;
-	/** El scroll para la tabla */	
-	private JScrollPane scroll;
-
-	/*public VisorJugadores() {
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		// TABLA
-		JTable tabla = new JTable(datosFila, nombreColumnas);
-		contentPane.add(tabla, BorderLayout.CENTER);
-		add(new JScrollPane(tabla), BorderLayout.CENTER);
-
-	}*/
-	 public void creaYMuestraVentana()
-		{
-	    	ventana = new JFrame("Contenido base de datos");
-	    	if (tabla == null)
-	        	tabla = new JTable();
-	    	scroll = new JScrollPane(tabla);
-	    	ventana.getContentPane().add(scroll);
-	    	ventana.pack();
-	    	ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	    	ventana.setVisible(true);
-	    	JButton botonInfo = new JButton("Generar Informe");
-		}
-
-		/**
-	 	* Mete el modelo que recibe en la tabla.
-	 	* @param modelo
-	 	*/
-		public void tomaDatos(DefaultTableModel modelo){
-	    	if (tabla == null)
-	        	tabla = new JTable();
-	    	tabla.setModel(modelo);
-		}
-
-	
-	/*private String[] nombreColumnas = { "Nombre", "Puntos", "Dorsal", "Posicion" };
-	private Object[][] datosFila = { { "Tomas Vaclik", 10, 1, "Portero" },
-			{ "Pablo Sarabi", 10, 17, "Centro Campista" } };*/
-	
-	
-	
 }
+/*private String[] nombreColumnas = { "Nombre", "Puntos", "Dorsal", "Posicion" };
+private Object[][] datosFila = { { "Tomas Vaclik", 10, 1, "Portero" },
+		{ "Pablo Sarabia", 10, 17, "Centro Campista" } };*/

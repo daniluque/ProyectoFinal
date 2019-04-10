@@ -1,46 +1,25 @@
 package Controlador;
 
+import java.io.LineNumberInputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
 import javax.swing.table.DefaultTableModel;
 
 import Modelo.Conexion;
+import Modelo.TablaJugadores;
+import Vista.Inicio;
 import Vista.VisorJugadores;
 
-public class Main {
-
-	private Conexion bd;
-	private VisorJugadores tabla;
-	private DefaultTableModel modelo;
-
-	public Main(){
+public class Main {	
+	
+	public static void main(String[] args) {	
+		Conexion.recibirConexion();
 		
-		try {
-	   		 // Se instancian las clases necesarias
-	   		 bd = new Conexion();
-	   		 modelo = new DefaultTableModel();
-	   		 tabla = new VisorJugadores();
-
-	   		 // Se comienza.
-	   		 bd.recibirConexion();
-	   		 tabla.creaYMuestraVentana();
-
-	   		 // Bucle infinito, cada segundo se reconsulta la base de datos
-	   		 // y se muestran los resultados en pantalla
-	   		 while (true) {
-	   			 ResultSet rs = bd.dameListaPersonas();
-	   			 Conversor.rellena(rs, modelo);
-	   			 tabla.tomaDatos(modelo);
-	   			 Thread.sleep(1000);
-	   		 }
-	   	 } catch (Exception e) {
-	   		 e.printStackTrace();
-	   	 }
-
-
+		Inicio frame = new Inicio();
+		frame.setVisible(true);
+		
+		
 	}
-	public static void main(String[] args) {
-		new Main();
-	}
+	
 }
