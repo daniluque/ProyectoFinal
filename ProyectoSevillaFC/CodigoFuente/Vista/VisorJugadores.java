@@ -1,6 +1,8 @@
 package Vista;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,13 +37,35 @@ public class VisorJugadores extends JFrame {
 	//Esta clase abre la ventana de los jugadores con sus botones
 	
 	public VisorJugadores() {
+		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
-		JTabbedPane tablaJugadores = new JTabbedPane(JTabbedPane.TOP);
-		tablaJugadores.setBounds(10, 11, 668, 138);
-		panel.add(tablaJugadores);
+		this.setMinimumSize(new Dimension(800,600));
+		/*Creo el modelo con su metodo Default*/
+		DefaultTableModel modelo = new DefaultTableModel();
+		/*Lo aplico al JPanel*/
+		tabla = new JTable(modelo);
+		/*Le añado los campos del nombre*/
+		modelo.addColumn("Nombre");
+		modelo.addColumn("Dorsal");
+		modelo.addColumn("Puntos");
+		tabla.setBounds(42, 25, 646, 137);
+		/*Creamo variable interna de ResultSet y llamamos a la funcion
+		 * que nos realiza la consulta que nos tiene que deolver un return ResulSet(Tipo Static)*/
+		ResultSet rs = Conexion.dameListaPersonas();
+		try {
+			while(rs.next()) {
+				Object [] fila = new Object[3];
+				 for (int i=0;i<3;i++)
+				      fila[i] = rs.getObject(i+1);
+				 modelo.addRow(fila); 
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		panel.add(tabla);
 		
 		
 		name = new JTextField();
@@ -60,7 +84,7 @@ public class VisorJugadores extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				/*Las comillas simples indica que el campo de la bbd es texto*/
 			Conexion.ejecutarUpdate("Insert into jugadores(nombre,dorsal) "
-					+ "VALUES('"+name.getText()+"',"+dorsal.getText()+")");
+			+ "VALUES('"+name.getText()+"',"+dorsal.getText()+")");
 			
 			}
 		});
@@ -77,7 +101,8 @@ public class VisorJugadores extends JFrame {
 		
 		
 	}
+	private Object[][] datosFila = { { "Tomas Vaclik", 10, 1, "Portero" },
+			{ "Pablo Sarabia", 10, 17, "Centro Campista" } };
+	private String[] nombreColumnas = { "Nombre", "Puntos", "Dorsal", "Posicion" };
+	private JTable tabla;
 }
-/*private String[] nombreColumnas = { "Nombre", "Puntos", "Dorsal", "Posicion" };
-private Object[][] datosFila = { { "Tomas Vaclik", 10, 1, "Portero" },
-		{ "Pablo Sarabia", 10, 17, "Centro Campista" } };*/
