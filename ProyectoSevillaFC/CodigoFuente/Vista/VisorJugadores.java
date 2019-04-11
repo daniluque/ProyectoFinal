@@ -46,6 +46,7 @@ public class VisorJugadores extends JFrame {
 		DefaultTableModel modelo = new DefaultTableModel();
 		/*Lo aplico al JPanel*/
 		tabla = new JTable(modelo);
+		
 		/*Le añado los campos del nombre*/
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Dorsal");
