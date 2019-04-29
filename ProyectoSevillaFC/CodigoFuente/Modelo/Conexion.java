@@ -61,6 +61,7 @@ public class Conexion {
 	}
 	
 	public static ResultSet dameListaPersonas() {
+		
 	   	 ResultSet rs = null;
 	   	 try {
 	   		 // Se crea un Statement, para realizar la consulta
@@ -68,7 +69,7 @@ public class Conexion {
 
 	   		 // Se realiza la consulta. Los resultados se guardan en el
 	   		 // ResultSet rs
-	   		 rs = s.executeQuery("select nombre,dorsal,puntuacion from jugadores");
+	   		 rs = s.executeQuery("select * from jugadores");
 	   	 } catch (Exception e) {
 	   		 e.printStackTrace();
 	   	 }

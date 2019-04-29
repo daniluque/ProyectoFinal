@@ -26,7 +26,7 @@ public class Inicio extends JFrame {
 		JButton btnVerJugadoresY = new JButton("VER JUGADORES Y PUNTOS");
 		btnVerJugadoresY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				VisorJugadores visor = new VisorJugadores();
+				Jugadores visor = new Jugadores();
 				dispose();
 				visor.setVisible(true);
 				

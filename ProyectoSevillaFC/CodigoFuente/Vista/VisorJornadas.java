@@ -1,6 +1,7 @@
 package Vista;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,6 +12,7 @@ import Modelo.Conexion;
 import javax.swing.JTabbedPane;
 import javax.swing.SingleSelectionModel;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 public class VisorJornadas extends JFrame {
 
@@ -19,29 +21,13 @@ public class VisorJornadas extends JFrame {
 	
 	
 	public VisorJornadas() {
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.setMinimumSize(new Dimension(800,600));
+		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		panel.setBounds(10, 11, 764, 482);
+		getContentPane().add(panel);
 		
-		JTabbedPane tablaJornadas = new JTabbedPane(JTabbedPane.TOP);
-		tablaJornadas.setBounds(10, 11, 414, 105);
-		panel.add(tablaJornadas);
-		
-		JButton btnAadirJornada = new JButton("A\u00F1adir jornada");
-		btnAadirJornada.setBounds(10, 143, 112, 23);
-		panel.add(btnAadirJornada);
-		
-		try {
-			
-			
-			
-			
-		}catch (Exception e) {
-			
-		}
 		
 	}
-
 }

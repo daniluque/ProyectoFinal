@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import Modelo.Conexion;
 import Modelo.TablaJugadores;
 import Vista.Inicio;
-import Vista.VisorJugadores;
+
 
 public class Main {	
 	
