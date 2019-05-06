@@ -47,5 +47,16 @@ public class Inicio extends JFrame {
 		jornadas.setBounds(363, 56, 199, 88);
 		contentPane.add(jornadas);
 		
+		JButton btnNewButton = new JButton("Hacer aliniación");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Aliniacion visor = new Aliniacion();
+				dispose();
+				visor.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(99, 227, 199, 83);
+		contentPane.add(btnNewButton);
+		
 	}
 }

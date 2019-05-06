@@ -48,33 +48,15 @@ public class Conexion {
 		}
 	}
 	
-	public static ResultSet ejecutarSentencia(String sentencia, String nombreTabla) {
-		try {
-			resultado = consulta.executeQuery(sentencia);
-			while(resultado.next()) {
-				System.out.println(resultado.getString(nombreTabla));
-			}
+	public static ResultSet ejecutarSentencia(String sentencia) {
+		 ResultSet rs = null;
+		try {			
+			Statement s = conexion.createStatement();
+			 rs = s.executeQuery(sentencia);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return resultado;
+		return rs;
 	}
-	
-	public static ResultSet dameListaPersonas() {
-		
-	   	 ResultSet rs = null;
-	   	 try {
-	   		 // Se crea un Statement, para realizar la consulta
-	   		 Statement s = conexion.createStatement();
-
-	   		 // Se realiza la consulta. Los resultados se guardan en el
-	   		 // ResultSet rs
-	   		 rs = s.executeQuery("select * from jugadores");
-	   	 } catch (Exception e) {
-	   		 e.printStackTrace();
-	   	 }
-	   	 return rs;
-	    }
-
-	
+			
 }
