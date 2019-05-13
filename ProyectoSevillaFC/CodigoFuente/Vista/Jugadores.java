@@ -33,11 +33,12 @@ public class Jugadores extends JFrame {
 	private JPanel contentPane;
 
 	private JTable tabla;
+	private JTextField jorBorr;
 	// Esta clase abre la ventana de los jugadores con sus botones
 
 	public Jugadores(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 661, 519);
+		setBounds(100, 100, 942, 519);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -180,8 +181,29 @@ public class Jugadores extends JFrame {
 			}
 
 		});
-		buscar.setBounds(568, 11, 47, 23);
+		buscar.setBounds(568, 11, 59, 23);
 		panel.add(buscar);
+		
+		JLabel lblBorrarJornada = new JLabel("Borrar Jornada");
+		lblBorrarJornada.setBounds(652, 15, 79, 14);
+		panel.add(lblBorrarJornada);
+		
+		jorBorr = new JTextField();
+		jorBorr.setBounds(750, 12, 40, 20);
+		panel.add(jorBorr);
+		jorBorr.setColumns(10);
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Boton de eliminar
+				TablaJugadores.BorrarJugador(jorBorr.getText());
+				
+				
+				
+			}
+		});
+		btnOk.setBounds(800, 11, 89, 23);
+		panel.add(btnOk);
 	}
-
 }

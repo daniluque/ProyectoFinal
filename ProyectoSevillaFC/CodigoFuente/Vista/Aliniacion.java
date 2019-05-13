@@ -74,9 +74,57 @@ public class Aliniacion extends JFrame {
 			JOptionPane.showMessageDialog(null, "Error");
 		}
 		
+		JComboBox centro1 = new JComboBox();
+		centro1.setBounds(335, 112, 75, 20);
+		panel.add(centro1);
 		
+		JComboBox centro2 = new JComboBox();
+		centro2.setBounds(335, 224, 75, 20);
+		panel.add(centro2);
 		
+		JComboBox centro3 = new JComboBox();
+		centro3.setBounds(335, 347, 75, 20);
+		panel.add(centro3);
 		
+		String listaCentro [];
+		try {
+			listaCentro = TablaJugadores.listaCentrocampistas();
+			for (int i = 0; i < listaCentro.length; i++) {
+				centro1.addItem(listaCentro[i]);
+				centro2.addItem(listaCentro[i]);
+				centro3.addItem(listaCentro[i]);
+				
+			}
+		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(null, "Error");
+		}
+		
+		JComboBox del1 = new JComboBox();
+		del1.setBounds(513, 58, 68, 20);
+		panel.add(del1);
+		
+		JComboBox del2 = new JComboBox();
+		del2.setBounds(524, 224, 75, 20);
+		panel.add(del2);
+		
+		JComboBox del3 = new JComboBox();
+		del3.setBounds(513, 381, 68, 20);
+		panel.add(del3);
+		
+		String listaDelanteros [];
+		try {
+			listaDelanteros = TablaJugadores.listaDelanteros();
+			for (int i = 0; i < listaDelanteros.length; i++) {
+				del1.addItem(listaDelanteros[i]);
+				del2.addItem(listaDelanteros[i]);
+				del3.addItem(listaDelanteros[i]);
+				
+				
+			}
+		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(null, "Error");
+		}
+			
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 11, 690, 446);
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\34654\\Desktop\\campo-futbol.jpg"));
