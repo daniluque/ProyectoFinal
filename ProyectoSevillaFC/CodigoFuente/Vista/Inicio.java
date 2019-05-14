@@ -4,11 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Modelo.TablaJugadores;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Inicio extends JFrame {
 
@@ -24,6 +31,7 @@ public class Inicio extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnVerJugadoresY = new JButton("VER JUGADORES Y PUNTOS");
+		btnVerJugadoresY.setIcon(new ImageIcon(Inicio.class.getResource("/imagenes/icons8-b\u00FAsqueda-24.png")));
 		btnVerJugadoresY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Jugadores visor = new Jugadores();
@@ -57,6 +65,33 @@ public class Inicio extends JFrame {
 		});
 		btnNewButton.setBounds(99, 227, 199, 83);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Copiar BBDD");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ResultSet rs = TablaJugadores.dameListaCompleta();
+				try {
+					String extension = ".md";
+					String ruta = "CodigoFuente/ficheros/copia" + extension;
+					FileWriter writer = new FileWriter(ruta);
+					writer.write("id\tnombre\tequipo\tdorsal\tposicion\tpuntuacion\tid_jornada\n");
+					/* Siguiente linea escribe bbdd en fichero */
+					while (rs.next()) {
+						
+						writer.write(rs.getString("id") +"\t"+rs.getString("nombre")+"\t"
+								+rs.getString("equipo") + "\t"+rs.getString("dorsal")+"\t"
+								+rs.getString("posision") + "\t"+rs.getString("puntuacion")+"\t"
+								+rs.getString("id_jornada")+"\n");
+					}
+					writer.close();
+					JOptionPane.showMessageDialog(null, "Fichero creado con exito");
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Error");
+				}
+			}
+		});
+		btnNewButton_1.setBounds(363, 227, 199, 83);
+		contentPane.add(btnNewButton_1);
 		
 	}
 }

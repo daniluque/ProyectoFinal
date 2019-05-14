@@ -27,6 +27,7 @@ import Modelo.TablaJugadores;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
 
 public class Jugadores extends JFrame {
 
@@ -100,6 +101,7 @@ public class Jugadores extends JFrame {
 		 *importante
 		 */
 		JButton informe = new JButton("Generar informe");
+		informe.setIcon(new ImageIcon(Jugadores.class.getResource("/imagenes/icons8-informe-gr\u00E1fico-24.png")));
 		informe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ResultSet rs = TablaJugadores.dameListaCompleta();
@@ -153,7 +155,8 @@ public class Jugadores extends JFrame {
 		/**
 		 * El boton que al clikar nos filtra por la jornada que queramos
 		 */
-		JButton buscar = new JButton("OK");
+		JButton buscar = new JButton("");
+		buscar.setIcon(new ImageIcon(Jugadores.class.getResource("/imagenes/icons8-marca-de-verificaci\u00F3n-24.png")));
 		buscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -197,9 +200,7 @@ public class Jugadores extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Boton de eliminar
-				TablaJugadores.BorrarJugador(jorBorr.getText());
-				
-				
+				TablaJugadores.BorrarJugador(jorBorr.getText());			
 				
 			}
 		});

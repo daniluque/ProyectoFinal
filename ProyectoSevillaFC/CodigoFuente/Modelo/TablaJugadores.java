@@ -150,6 +150,7 @@ public class TablaJugadores {
 	}
 	
 	public static void BorrarJugador(String jor) {
+		
 		Conexion.ejecutarUpdate("Delete from jugadores where id_jornada ="+jor);
 	}
 	
