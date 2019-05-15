@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.Arrays;
 
 import javax.swing.JButton;
@@ -28,7 +29,9 @@ import Modelo.TablaJugadores;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
-
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import Atxy2k.CustomTextField.RestrictedTextField;
 public class Jugadores extends JFrame {
 
 	private JPanel contentPane;
@@ -39,7 +42,7 @@ public class Jugadores extends JFrame {
 
 	public Jugadores(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 942, 519);
+		setBounds(100, 100, 1048, 515);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -192,6 +195,14 @@ public class Jugadores extends JFrame {
 		panel.add(lblBorrarJornada);
 		
 		jorBorr = new JTextField();
+		jorBorr.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				char c = arg0.getKeyChar();
+				if (c < '0' || c > '9')
+					arg0.consume();
+			}
+		});
 		jorBorr.setBounds(750, 12, 40, 20);
 		panel.add(jorBorr);
 		jorBorr.setColumns(10);
@@ -206,5 +217,22 @@ public class Jugadores extends JFrame {
 		});
 		btnOk.setBounds(800, 11, 89, 23);
 		panel.add(btnOk);
+		
+		JButton imprimir = new JButton("New button");
+		imprimir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MessageFormat header =new MessageFormat("Lista de Jugadores");
+				MessageFormat pie =new MessageFormat("Página 1");
+				try {
+					tabla.print(JTable.PrintMode.FIT_WIDTH, header, pie);
+					
+				}catch(java.awt.print.PrinterException f) {
+					System.err.format("Error de impresion", f.getMessage());
+					
+				}
+			}
+		});
+		imprimir.setBounds(914, 11, 89, 23);
+		panel.add(imprimir);
 	}
 }

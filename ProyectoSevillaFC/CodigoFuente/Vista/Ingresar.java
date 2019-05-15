@@ -2,7 +2,7 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import Atxy2k.CustomTextField.RestrictedTextField;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -42,11 +42,14 @@ public class Ingresar extends JFrame {
 		nombre.setBounds(38, 173, 86, 20);
 		contentPane.add(nombre);
 		nombre.setColumns(10);
+		RestrictedTextField r1 = new RestrictedTextField(nombre," abcdefghijklmnñopqrstuvwxyzáíóúé");
 		
 		numero = new JTextField();
 		numero.setBounds(163, 173, 46, 20);
 		contentPane.add(numero);
 		numero.setColumns(10);
+		RestrictedTextField r2 = new RestrictedTextField(numero,"0123456789");
+		r2.setLimit(2);
 		
 		JComboBox selec = new JComboBox();
 		selec.addItem("Portero");
