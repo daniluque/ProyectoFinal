@@ -71,16 +71,16 @@ public class Inicio extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				ResultSet rs = TablaJugadores.dameListaCompleta();
 				try {
-					String extension = ".md";
-					String ruta = "CodigoFuente/ficheros/copia" + extension;
+					String extension = ".csv";
+					String ruta = "CodigoFuente/ficheros/basededatos" + extension;
 					FileWriter writer = new FileWriter(ruta);
-					writer.write("id\tnombre\tequipo\tdorsal\tposicion\tpuntuacion\tid_jornada\n");
+					writer.write("id;nombre;equipo;dorsal;posicion;puntuacion;id_jornada\n");
 					/* Siguiente linea escribe bbdd en fichero */
 					while (rs.next()) {
 						
-						writer.write(rs.getString("id") +"\t"+rs.getString("nombre")+"\t"
-								+rs.getString("equipo") + "\t"+rs.getString("dorsal")+"\t"
-								+rs.getString("posision") + "\t"+rs.getString("puntuacion")+"\t"
+						writer.write(rs.getString("id") +";"+rs.getString("nombre")+";"
+								+rs.getString("equipo") + ";"+rs.getString("dorsal")+";"
+								+rs.getString("posision") + ";"+rs.getString("puntuacion")+";"
 								+rs.getString("id_jornada")+"\n");
 					}
 					writer.close();
