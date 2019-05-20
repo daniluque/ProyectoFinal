@@ -2,6 +2,8 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
@@ -44,6 +46,11 @@ public class Jugadores extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1048, 515);
 		contentPane = new JPanel();
+		setTitle("Gestión de plantilla");
+
+		Toolkit miPantalla = Toolkit.getDefaultToolkit();
+		Image fav = miPantalla.getImage("CodigoFuente/imagenes/s.jpg");
+		setIconImage(fav);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -128,14 +135,14 @@ public class Jugadores extends JFrame {
 				}
 			}
 		});
-		informe.setBounds(208, 11, 146, 23);
+		informe.setBounds(166, 11, 146, 23);
 		panel.add(informe);
 
 		/**
 		 * Texto de el filtro
 		 */
 		JLabel lblFiltrarPorJornada = new JLabel("Filtrar por jornada");
-		lblFiltrarPorJornada.setBounds(415, 15, 99, 14);
+		lblFiltrarPorJornada.setBounds(335, 15, 99, 14);
 		panel.add(lblFiltrarPorJornada);
 
 		/**
@@ -152,7 +159,7 @@ public class Jugadores extends JFrame {
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, "Error");
 		}
-		filtrojornada.setBounds(524, 12, 34, 20);
+		filtrojornada.setBounds(483, 12, 34, 20);
 		panel.add(filtrojornada);
 
 		/**
@@ -187,11 +194,11 @@ public class Jugadores extends JFrame {
 			}
 
 		});
-		buscar.setBounds(568, 11, 59, 23);
+		buscar.setBounds(537, 11, 59, 23);
 		panel.add(buscar);
 		
 		JLabel lblBorrarJornada = new JLabel("Borrar Jornada");
-		lblBorrarJornada.setBounds(652, 15, 79, 14);
+		lblBorrarJornada.setBounds(625, 15, 106, 14);
 		panel.add(lblBorrarJornada);
 		
 		jorBorr = new JTextField();
@@ -203,7 +210,7 @@ public class Jugadores extends JFrame {
 					arg0.consume();
 			}
 		});
-		jorBorr.setBounds(750, 12, 40, 20);
+		jorBorr.setBounds(741, 11, 40, 20);
 		panel.add(jorBorr);
 		jorBorr.setColumns(10);
 		
@@ -211,6 +218,7 @@ public class Jugadores extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Boton de eliminar
+				
 				TablaJugadores.BorrarJugador(jorBorr.getText());			
 				
 			}
@@ -218,17 +226,22 @@ public class Jugadores extends JFrame {
 		btnOk.setBounds(800, 11, 89, 23);
 		panel.add(btnOk);
 		
-		JButton imprimir = new JButton("New button");
+		JButton imprimir = new JButton("");
+		imprimir.setIcon(new ImageIcon(Jugadores.class.getResource("/imagenes/icons8-exportar-pdf-24.png")));
 		imprimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				int pag = 1;
 				MessageFormat header =new MessageFormat("Lista de Jugadores");
-				MessageFormat pie =new MessageFormat("Página 1");
+				MessageFormat pie =new MessageFormat("Página "+pag);
+				pag++;
 				try {
+					
 					tabla.print(JTable.PrintMode.FIT_WIDTH, header, pie);
-					
+		
 				}catch(java.awt.print.PrinterException f) {
-					System.err.format("Error de impresion", f.getMessage());
 					
+					System.err.format("Error de impresion", f.getMessage());
+		
 				}
 			}
 		});

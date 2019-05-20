@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -34,6 +36,11 @@ public class Ingresar extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 658, 392);
 		contentPane = new JPanel();
+		setTitle("Alta de jugador");
+
+		Toolkit miPantalla = Toolkit.getDefaultToolkit();
+		Image fav = miPantalla.getImage("CodigoFuente/imagenes/s.jpg");
+		setIconImage(fav);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -50,6 +57,8 @@ public class Ingresar extends JFrame {
 		numero.setColumns(10);
 		RestrictedTextField r2 = new RestrictedTextField(numero,"0123456789");
 		r2.setLimit(2);
+		
+		
 		
 		JComboBox selec = new JComboBox();
 		selec.addItem("Portero");
@@ -98,6 +107,9 @@ public class Ingresar extends JFrame {
 		jornada.setBounds(493, 173, 74, 20);
 		contentPane.add(jornada);
 		jornada.setColumns(10);
+		
+		RestrictedTextField r3 = new RestrictedTextField(jornada,"0123456789");
+		r3.setLimit(2);
 		
 		/*BOTON DE AÑADIR CON SU FUNCIONALIDAD*/
 		JButton btnAadir = new JButton("A\u00F1adir");

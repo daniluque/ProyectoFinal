@@ -2,6 +2,8 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
@@ -27,6 +29,10 @@ public class Aliniacion extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 717, 504);
 		contentPane = new JPanel();
+		setTitle("Aliniación");
+		Toolkit miPantalla = Toolkit.getDefaultToolkit();
+		Image fav = miPantalla.getImage("CodigoFuente/imagenes/s.jpg");
+		setIconImage(fav);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
